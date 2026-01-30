@@ -85,8 +85,8 @@ def create_stimulus_metadata():
     # Save to CSV
     csv_path = stim_dir / 'stimulus_metadata.csv'
     df.to_csv(csv_path, index=False)
-    print(f"\n✅ Saved stimulus metadata to: {csv_path}")
-    print(f"✅ Total stimuli: {len(df)}")
+    print(f"\nSaved stimulus metadata to: {csv_path}")
+    print(f"Total stimuli: {len(df)}")
     
     return df
 

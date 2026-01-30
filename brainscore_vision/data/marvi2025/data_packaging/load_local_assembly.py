@@ -40,7 +40,7 @@ if __name__ == '__main__':
     print("Loading Marvi2025 fMRI assembly...")
     assembly = load_local_marvi2025_assembly()
     
-    print(f"\n✅ Loaded successfully!")
+    print(f"\nLoaded successfully!")
     print(f"   Identifier: {assembly.attrs.get('identifier', 'N/A')}")
     print(f"   Shape: {assembly.shape}")
     print(f"   Dims: {assembly.dims}")

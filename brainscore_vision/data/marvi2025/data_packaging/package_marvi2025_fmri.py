@@ -270,7 +270,7 @@ def main():
     
     assembly = package_marvi2025_assembly()
     
-    print(f"\n✅ Assembly created!")
+    print(f"\nAssembly created!")
     print(f"   Shape: {assembly.shape}")
     print(f"   Dims: {assembly.dims}")
     print(f"   Coords: {list(assembly.coords.keys())}")
@@ -280,7 +280,7 @@ def main():
     output_path = Path(__file__).parent / 'marvi2025_assembly.pkl'
     with open(output_path, 'wb') as f:
         pickle.dump(assembly, f)
-    print(f"\n💾 Saved to: {output_path}")
+    print(f"\nSaved to: {output_path}")
     
     return assembly
 

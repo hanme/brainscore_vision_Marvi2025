@@ -41,8 +41,8 @@ def load_local_marvi2025_stimulus_set():
 if __name__ == '__main__':
     # Test loading
     stimulus_set = load_local_marvi2025_stimulus_set()
-    print(f"✅ Loaded {len(stimulus_set)} stimuli")
-    print(f"✅ Identifier: {stimulus_set.identifier}")
+    print(f"Loaded {len(stimulus_set)} stimuli")
+    print(f"Identifier: {stimulus_set.identifier}")
     print(f"\nColumns: {list(stimulus_set.columns)}")
     print(f"\nConditions: {stimulus_set['condition'].value_counts()}")
-    print(f"\n✅ StimulusSet ready for local testing!")
+    print(f"\nStimulusSet ready for local testing!")
