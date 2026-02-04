@@ -5,6 +5,12 @@ Based on the EMFL design from run_effloc.m:
 - Visual conditions: 0=Fixation, 1=Faces, 2=Scenes, 3=Bodies, 4=Objects, 5=Words
 - 5 runs × 13 blocks per run (blocks 1,7,13 are fixation, no stimuli)
 - 50 total stimulus videos (10 per run, blocks 2-6 and 8-12)
+
+Visual angle (confirmed by authors, Sam Hutchinson, Feb 4, 2026):
+- Horizontal: 6.4 degrees (screen width 40 cm, viewing distance 133 cm)
+- Vertical: 5.2 degrees (screen height 32 cm, viewing distance 133 cm)
+- Videos displayed at 75% of screen dimensions
+- Calculation: arctan([dimension * 0.75 / 2] / 133)
 """
 
 import pandas as pd
@@ -67,6 +73,8 @@ def create_stimulus_metadata():
             'task_response': task_response,
             'duration_sec': 3.0,  # Each video clip is 3 seconds
             'category': condition if condition != 'words' else 'words_scrambled',
+            'degrees_width': 6.4,  # Horizontal visual angle (confirmed by authors)
+            'degrees_height': 5.2,  # Vertical visual angle (confirmed by authors)
         })
         
         stimulus_id_counter += 1

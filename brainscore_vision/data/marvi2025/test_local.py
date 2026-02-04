@@ -32,7 +32,8 @@ class TestStimulusMetadata:
     def test_required_columns(self, metadata):
         """Test all required columns are present."""
         required_columns = ['stimulus_id', 'filename', 'run', 'block', 
-                           'condition', 'task_response', 'duration_sec', 'category']
+                           'condition', 'task_response', 'duration_sec', 'category',
+                           'degrees_width', 'degrees_height']
         for col in required_columns:
             assert col in metadata.columns, f"Missing required column: {col}"
     
@@ -73,6 +74,13 @@ class TestStimulusMetadata:
     def test_duration(self, metadata):
         """Test all videos have 3-second duration."""
         assert (metadata['duration_sec'] == 3.0).all(), "Not all videos are 3 seconds"
+    
+    def test_visual_degrees(self, metadata):
+        """Test visual angle values are correct (confirmed by authors)."""
+        assert (metadata['degrees_width'] == 6.4).all(), \
+            "Expected horizontal visual angle of 6.4 degrees"
+        assert (metadata['degrees_height'] == 5.2).all(), \
+            "Expected vertical visual angle of 5.2 degrees"
     
     def test_filenames_exist(self, metadata, metadata_path):
         """Test all referenced video files exist."""
@@ -143,6 +151,17 @@ class TestLocalLoader:
         conditions = set(stimulus_set['condition'].values)
         expected = {'faces', 'scenes', 'bodies', 'objects', 'words'}
         assert conditions == expected
+    
+    def test_local_loader_visual_degrees(self):
+        """Test visual angle metadata from local loader."""
+        from brainscore_vision.data.marvi2025.data_packaging.load_local_stimulus_set import \
+            load_local_marvi2025_stimulus_set
+        
+        stimulus_set = load_local_marvi2025_stimulus_set()
+        assert 'degrees_width' in stimulus_set.columns, "Missing degrees_width column"
+        assert 'degrees_height' in stimulus_set.columns, "Missing degrees_height column"
+        assert (stimulus_set['degrees_width'] == 6.4).all(), "Incorrect horizontal visual angle"
+        assert (stimulus_set['degrees_height'] == 5.2).all(), "Incorrect vertical visual angle"
 
 
 class TestfMRIAssembly:
